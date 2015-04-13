@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rsim/oracle-enhanced.git
+  revision: 6ca7870adaa13d885540bb283958e4d1ef1fc6cc
+  branch: rails42
+  specs:
+    activerecord-oracle_enhanced-adapter (1.5.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -159,6 +166,7 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     rdoc (4.2.0)
+    ruby-oci8 (2.1.8)
     ruby-progressbar (1.7.5)
     sass (3.4.13)
     sass-rails (5.0.3)
@@ -205,6 +213,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-oracle_enhanced-adapter!
   bootstrap-sass (= 3.2.0.0)
   byebug (= 3.4.0)
   coffee-rails (~> 4.1.0)
@@ -216,6 +225,7 @@ DEPENDENCIES
   pg (= 0.18.1)
   rails (= 4.2.1)
   rails_12factor (= 0.0.2)
+  ruby-oci8 (~> 2.1.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring (= 1.1.3)
