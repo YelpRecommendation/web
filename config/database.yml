@@ -1,8 +1,5 @@
 development:
-	adapter: oracle_enhanced
-	host:jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com
-	port:1521
-	database:jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com/TESTRDS
-	username:jackchen
-	password:cis5502015
-
+ adapter: oracle_enhanced
+ database: jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS
+ username: jackchen
+ password: cis5502015
