@@ -1,7 +1,8 @@
 <provide(:title,'Choose your favorate tags')>
-<h1>Please choose your favorate tags</h1>
-<form action="wait">
-<select multiple>
+<h1>Time to choose your favorate tags</h1>
+<form role="form" action="wait">
+	<div class="form-group">
+<select multiple class="form-control">
 	<option value="diners">Diners</option>
 	<option value="italian">Italian</option>
 	<option value="winebars">Wine Bars</option>
@@ -19,5 +20,8 @@
 	<option value="american">American (Traditional)</option>
 	<option value="donuts">Donuts</option>
 </select>
-<input type="submit">
+</div>
+<div class="form-group">
+<input type="submit" class="btn btn-primary" value="Submit">
+</div>
 </form>

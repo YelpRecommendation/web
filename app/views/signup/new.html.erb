@@ -1,16 +1,17 @@
 <% provide(:title,'Sign up')%>
 <h1>Sign Up</h1>
-<p>Find me in app/views/signup/new.html.erb</p>
-<p>
-	<%= readuser %>
-</p>
-<div class="row">
+
+<div>
 	<div class="span6 offset3">
 
-	<form action="recom" method="GET">
-		Name:
-		<input type="text" name="name">
-		<input type="submit" value="Submit">
+	<form role="form" action="recom" method="GET">
+		<div class="form-group">
+			<div class="col-xs-3">
+			<input type="text" name="name" class="form-control" placeholder="Enter your username here"/>
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Submit"/>
+		</div>
 	 </form>
 	</div>
 </div>

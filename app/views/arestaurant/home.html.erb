@@ -1,2 +1,30 @@
-<h1>Arestaurant#home</h1>
-<p>Find me in app/views/arestaurant/home.html.erb</p>
+<h1>Detail information about the restaurant</h1>
+<p>
+<% name = params[:name] %>
+<% conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')%>
+<% sql = "select * from business where name LIKE \'\%"+name+"\%\'" %>
+<ul class="list-group">
+<% conn.exec(sql).fetch do |row|%>
+<li class="list-group-item">
+	Name:
+<%= row[2] %>
+<br>
+	Address:
+<%= row[3] %>
+<br>
+	City:
+<%= row[4] %>
+<br>
+	State:
+<%= row[5] %>
+<br>
+	Stars:
+<%= row[8] %>
+<br>
+	Open:
+<%= row[10] %>
+</li>
+<% end%>
+</ul>
+<%conn.logoff%>
+</p>
