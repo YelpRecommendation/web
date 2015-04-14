@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
   get 'signup/new'
 
   root 'static_pages#home'
@@ -9,9 +11,9 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   
   get 'tcptest' => 'application#tcptest'
-  get 'test3' => 'static_pages#test3'
-
+  
   get 'signup' => 'signup#new'
+  get 'signin' => 'sessions#new'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
