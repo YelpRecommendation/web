@@ -2,23 +2,18 @@ class SessionsController < ApplicationController
 	
 	def new
 		@title = "Sign in"
+
+		cookies[:email]="hihi"
+		cookies[:passwd]="world"
 	end
 	
 	def create
-		# user = User.authenticate(params[:session][:email],
-		# 	params[:session][:password])
-		# if user.nil?
-		# 	flash.now[:error] = "Invalid email/password combination."
-		# 	@title = "Sign in"
-		# 	render 'new'
-		# else
-		# 	# Sign the user in and redirect to the user's show page.
-		# end
-
 		email=params[:session][:email]
 		passwd=params[:session][:password]
 
 		print '=================='
+
+		
 
 		render text: "==="+email+passwd
 

@@ -5,11 +5,7 @@ class ApplicationController < ActionController::Base
 	
 	
 	def tcptest
-		
-		
-		
-		
-		
+
 		require "net/http"
 		require "uri"
 		
