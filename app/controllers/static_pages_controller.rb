@@ -11,6 +11,10 @@ class StaticPagesController < ApplicationController
 	def contact
 	end
 	
+	def login
+		render text: hi
+	end
+	
 	def test3
 #		render text:
 #		
