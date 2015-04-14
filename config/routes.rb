@@ -31,6 +31,11 @@ Rails.application.routes.draw do
   get 'recom' => 'recom#home'
   get 'wait' => 'wait#home'
 
+
+  get 'search' => 'search#home'
+  get 'arestaurant' => 'arestaurant#home'
+  
+
   get 'sessions' => 'sessions#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
