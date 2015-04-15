@@ -6,14 +6,14 @@ class SessionsController < ApplicationController
 	end
 	
 	def create
-		email=params[:session][:username]
-		passwd=params[:session][:passwd]
+		email=params[:session][:email]
+		passwd=params[:session][:password]
 		
 		cookies[:username]=email
 		cookies[:passwd]=passwd
 		
 		
-		redirect_to "home"
+		redirect_to '/search'
 	end
 	
 	def destroy
