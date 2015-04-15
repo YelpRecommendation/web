@@ -1,32 +1,32 @@
 <provide(:title,'Recommendation')>
 <h1>We recommend these restaurant for you:</h1>
 <div>
-<form role="form" action='arestaurant'>
-	<div class="form-group">
-		<div class="col-xs-3">
-			<input type="text" name = "name" class="form-control" placeholder="restaurant's name">
+	<form role="form" action='arestaurant'>
+		<div class="form-group">
+			<div class="col-xs-3">
+				<input type="text" name = "name" class="form-control" placeholder="restaurant's name">
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<input type="submit" value="Search" class="btn btn-primary">
-	</div>
-</form>
+		<div class="form-group">
+			<input type="submit" value="Search" class="btn btn-primary">
+		</div>
+	</form>
 </div>
 <div>
-<% name = cookies[:username]%>
-<%= name%>
-<% conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')%>
-<% sql = "select * from new_user,business where new_user.username=\'"+name+"\' and new_user.business_id=business.business_id"%>
-<%=sql%>
-<ul class="list-group">
-<% conn.exec(sql).fetch do |row|%>
-<%= '========'%>
-<li class="list-group-item">
-	Name:
-<%= row[0] %>
-<br>
-</li>
-<% end%>
-</ul>
-<%conn.logoff%>
+	<% name = cookies[:username]%>
+	<%= name%>
+	<% conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')%>
+	<% sql = "select * from new_user,business where new_user.username=\'"+name+"\' and new_user.business_id=business.business_id"%>
+	<%=sql%>
+	<ul class="list-group">
+		<% conn.exec(sql).fetch do |row|%>
+		<%= '========'%>
+		<li class="list-group-item">
+			Name:
+			<%= row[0] %>
+			<br>
+		</li>
+		<% end%>
+	</ul>
+	<%conn.logoff%>
 </div>

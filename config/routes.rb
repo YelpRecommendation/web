@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   get 'recom/home'
   
   get 'signup/new'
-
+  
   root 'static_pages#home'
+  
+  get 'home' => 'static_pages#home'
 
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
