@@ -1,3 +1,4 @@
+<provide(:title,'Details')>
 <h1>Detail information about the restaurant</h1>
 <p>
 <% name = params[:name] %>
@@ -23,6 +24,12 @@
 <br>
 	Open:
 <%= row[10] %>
+<br>
+<%BingSearch.account_key='OQjobovJhpYgpIjDnC30TH/FOzw5Itq8eYTySpbfZGw'%>
+<%result = BingSearch.image(row[2]).first %>
+<%if result!=nil%>
+<%= image_tag(result.media_url,:alt=>"Image",:title=>row[2],:height=>"100",:width=>"100")%>
+<%end%>
 </li>
 <% end%>
 </ul>

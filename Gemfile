@@ -8,6 +8,7 @@ gem 'bootstrap-sass', '3.2.0.0'
 #gem 'activerecord-oracle_enhanced-adapter', :git => 'git://github.com/rsim/oracle-enhanced.git'
 gem 'activerecord-oracle_enhanced-adapter', github: 'rsim/oracle-enhanced', branch: 'rails42'
 gem 'ruby-oci8','~>2.1.0'
+gem 'bing-search', '~>2.0.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
