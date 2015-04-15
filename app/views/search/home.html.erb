@@ -13,20 +13,37 @@
 	</form>
 </div>
 <div>
-	<% name = cookies[:username]%>
-	<%= name%>
-	<% conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')%>
-	<% sql = "select * from new_user,business where new_user.username=\'"+name+"\' and new_user.business_id=business.business_id"%>
-	<%=sql%>
-	<ul class="list-group">
-		<% conn.exec(sql).fetch do |row|%>
-		<%= '========'%>
-		<li class="list-group-item">
-			Name:
-			<%= row[0] %>
-			<br>
-		</li>
-		<% end%>
-	</ul>
-	<%conn.logoff%>
+<% name = cookies[:username]%>
+<% conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')%>
+<% sql = "select business.name,business.full_address,business.city,state,stars,open from new_user,business where new_user.username=\'"+name+"\' and new_user.business_id=business.business_id"%>
+<ul class="list-group">
+<% conn.exec(sql).fetch do |row|%>
+<li class="list-group-item">
+	Name:
+<%= row[0] %>
+<br>
+	Address:
+<%= row[1] %>
+<br>
+	City:
+<%= row[2] %>
+<br>
+	State:
+<%= row[3] %>
+<br>
+	Stars:
+<%= row[4] %>
+<br>
+	Open:
+<%= row[5] %>
+<br>
+<%BingSearch.account_key='OQjobovJhpYgpIjDnC30TH/FOzw5Itq8eYTySpbfZGw'%>
+<%result = BingSearch.image(row[0]).first %>
+<%if result!=nil%>
+<%= image_tag(result.media_url,:alt=>"Image",:title=>row[2],:height=>"100",:width=>"100")%>
+<%end%>
+</li>
+<% end%>
+</ul>
+<%conn.logoff%>
 </div>
