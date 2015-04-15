@@ -1,26 +1,48 @@
 class WaitController < ApplicationController
-  def home
-      #require 'socket'
-      
-      #host = '192.168.64.1'     # The web server
-      #port = 8078
-      #path = "/control"                 # The file we want
-      
-      #cate = params[:selected]
-      #name = cookies[:username]
-      # This is the HTTP request we send to fetch a file
-      #request = "POST #{path} HTTP/1.0\r\n\r\nusername="+name+"&content="
-      
-      #socket = TCPSocket.open(host,port)  # Connect to server
-      #socket.print(request)               # Send request
-      #response = socket.read              # Read complete response
-      
-      #print response
-      
-      # Split response at first blank line into headers and body
-      #headers,body = response.split("\r\n\r\n", 2)
-      #print body                          # And display it
-      
-      redirect_to "/search"
-  end
+	def home
+
+
+		cate = params[:selected]
+		name = cookies[:username]
+		
+		
+		
+		
+		
+		
+		content=""
+		
+		len = cate.length
+		
+		if len >= 1
+			content=cate[0]
+			if len >= 2
+				for i in 2..len
+					content+="$"+cate[i-1]
+				end
+			end
+		end
+		
+		
+		
+		
+		
+#		require "net/http"
+#		require "uri"
+#		
+#		uri = URI.parse("http://165.123.216.212:8081/Recommendation/rec")
+#		
+#		http = Net::HTTP.new(uri.host, uri.port)
+#		
+#		request = Net::HTTP::Post.new(uri.request_uri)
+#		request.set_form_data({"username" => name, "content" => content})
+#		
+#		response = http.request(request)
+
+
+		
+
+		
+		redirect_to "/search"
+	end
 end

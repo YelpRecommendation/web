@@ -3,21 +3,17 @@ class SessionsController < ApplicationController
 	def new
 		@title = "Sign in"
 
-		cookies[:email]="hihi"
-		cookies[:passwd]="world"
 	end
 	
 	def create
 		email=params[:session][:email]
 		passwd=params[:session][:password]
 
-		print '=================='
-
+		cookies[:username]=email
+		cookies[:passwd]=passwd
 		
-
-		render text: "==="+email+passwd
-
-
+		
+		redirect_to "/search"
 	end
 
 	def destroy
