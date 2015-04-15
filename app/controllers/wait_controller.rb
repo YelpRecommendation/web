@@ -27,20 +27,19 @@ class WaitController < ApplicationController
 		
 		
 		
-#		require "net/http"
-#		require "uri"
-#		
-#		uri = URI.parse("http://165.123.216.212:8081/Recommendation/rec")
-#		
-#		http = Net::HTTP.new(uri.host, uri.port)
-#		
-#		request = Net::HTTP::Post.new(uri.request_uri)
-#		request.set_form_data({"username" => name, "content" => content})
-#		
-#		response = http.request(request)
-
-
+		require "net/http"
+		require "uri"
 		
+		uri = URI.parse("http://158.130.104.9:8081/Recommendation/rec")
+		
+		http = Net::HTTP.new(uri.host, uri.port)
+		
+		request = Net::HTTP::Post.new(uri.request_uri)
+		request.set_form_data({"username" => name, "content" => content})
+		
+		response = http.request(request)
+
+
 
 		
 		redirect_to "/search"

@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
 	end
 	
 	def create
-		email=params[:session][:email]
-		passwd=params[:session][:password]
+		email=params[:session][:username]
+		passwd=params[:session][:passwd]
 		
 		cookies[:username]=email
 		cookies[:passwd]=passwd
