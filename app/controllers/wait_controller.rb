@@ -6,7 +6,7 @@ class WaitController < ApplicationController
       #port = 8078
       #path = "/control"                 # The file we want
       
-      #cate = params[:value]
+      #cate = params[:selected]
       #name = cookies[:username]
       # This is the HTTP request we send to fetch a file
       #request = "POST #{path} HTTP/1.0\r\n\r\nusername="+name+"&content="
