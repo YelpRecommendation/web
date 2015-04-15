@@ -7,5 +7,7 @@ class RecomController < ApplicationController
       
       conn.commit
       conn.logoff
+      
+      cookies[:username]=name
   end
 end
