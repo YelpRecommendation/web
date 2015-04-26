@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'signin' => 'sessions#new'
   get 'signout' => 'sessions#destroy'
   get 'sessions' => 'sessions#create'
-  
+  get 'facebook' => 'sessions#facebook'
   get 'recom' => 'recom#home'
   get 'wait' => 'wait#home'
 
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get 'search' => 'search#home'
   get 'arestaurant' => 'arestaurant#home'
   
-
+ 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
