@@ -5,8 +5,12 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><%= link_to "Home", root_path%></li>
 					<li><%= link_to "Search", help_path %></li>
-					<li><%= link_to "Log in", 'signin' %></li>
-					<li><%= link_to "Log out", 'signout' %></li>
+						<% if cookies[:username]==nil%>
+							<li><%= link_to "Log in", 'signin' %></li>
+						<% else%>
+							<li><%= link_to "My Account", 'myaccount' %></li>
+							<li><%= link_to "Log Out", 'signout' %></li>
+						<% end %>
 				</ul>
 			</nav>
 		</div>

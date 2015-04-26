@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   get 'search' => 'search#home'
   get 'arestaurant' => 'arestaurant#home'
   
+  get 'testmap' => 'search#testmap'
+  get 'testloc' => 'search#testloc'
+  
 
 
   # The priority is based upon order of creation: first created -> highest priority.
