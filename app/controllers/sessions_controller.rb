@@ -40,4 +40,22 @@ class SessionsController < ApplicationController
         end
     end
 	
+	def testdb
+		require 'moneta'
+		
+		# Create a simple file store
+		store = Moneta.new(:File, dir: 'moneta')
+		
+		# Store some entries
+		store['key2'] = store['key2']<<"s"
+		
+		# Read entry
+		store.key?('key2') # returns true
+		testtxt=store['key2'].to_s # returns 'value'
+		
+		store.close
+		
+		render text: testtxt
+	end
+	
 end

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
  
   get 'testmap' => 'search#testmap'
   get 'testloc' => 'search#testloc'
+  get 'testdb' => 'sessions#testdb'
   
 
 
