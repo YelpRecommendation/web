@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
 	def destroy
 		cookies.delete(:username)
 		cookies.delete(:passwd)
+        
 		redirect_to '/home'
 	end
     

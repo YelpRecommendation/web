@@ -1,7 +1,11 @@
 <footer class="footer">
   <small>
     The Yelp Recommendation App</a>
-    by Yang Cao, Yuexi Ma, Muruo Liu, and Yuanjie Chen
+    by Yang Cao, Yuexi Ma, Muruo Liu, and Yuanjie Chen</a>
+
+						<% if cookies[:username]!=nil%>
+							<%= "  Logged in as "+cookies[:username]%>
+						<% end %>
   </small>
   <nav>
     <ul>
