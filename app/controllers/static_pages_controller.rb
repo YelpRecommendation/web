@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
 	def home
+        cookies[:method]='user'
 	end
 	
 	def help

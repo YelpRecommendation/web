@@ -1,6 +1,11 @@
 <provide(:title,'Recommendation')>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <h1>We recommend these restaurant for you:</h1>
-<div>
+<div class="container">
+<div class="row">
+	<div class="col-sm-10">
 	<form role="form" action='arestaurant'>
 		<div class="form-group">
 			<div class="col-xs-3">
@@ -11,10 +16,32 @@
 			<input type="submit" value="Search" class="btn btn-primary">
 		</div>
 	</form>
+	<div class="col-sm-2">
+		<div class="dropdown">
+			<button class="btn btn-primary dropdown-toggle" type="button" id="menu" data-toggle="dropdown">Sort by
+				<span class="caret"></span></button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+					<li role="presentation">	
+						<a role="menuitem" tabindex="-1" href="search?method=location">Sort by Location</a>
+					</li>
+					<li role="presentation">						
+						<a role="menuitem" tabindex="-1" href="search?method=user">Sort by User Recommendation</a>
+					</li>
+					<li role="presentation">						
+						<a role="menuitem" tabindex="-1" href="search?method=rating">Sort by Business Rating</a>
+					</li>
+				</ul>
+		</div>
+	</div>
 </div>
 <div>
+<br><br>
+<br><br>
+<br><br>
 <% name = cookies[:username]%>
+<% method = params[:method]%>
 <%=name%>
+<%=method%>
 <ul class="list-group">
 <%
 require 'moneta'
@@ -35,7 +62,10 @@ sql = "select business.name,business.full_address,business.city,state,stars from
 %>
 
 <% conn.exec(sql).fetch do |row|%>
+
 <li class="list-group-item">
+<div class="row">
+<div class="col-sm-6">
 	Name:
 <%= row[0] %>
 <br>
@@ -51,14 +81,18 @@ sql = "select business.name,business.full_address,business.city,state,stars from
 	Stars:
 <%= row[4] %>
 <br>
+</div>
+<div class="col-sm-6">
 <%BingSearch.account_key='OQjobovJhpYgpIjDnC30TH/FOzw5Itq8eYTySpbfZGw'%>
 <%result = BingSearch.image(row[0]).first %>
 <%if result!=nil%>
 <%= image_tag(result.media_url,:alt=>"Image",:title=>row[2],:height=>"100",:width=>"100")%>
 <%end%>
+</div>
 </li>
 <% end%>
 <%end%>
 </ul>
 <%conn.logoff%>
+</div>
 </div>

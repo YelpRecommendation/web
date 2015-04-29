@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'moneta'
 gem 'geocoder'
-
+gem 'capistrano'
+gem 'capistrano-ext'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'

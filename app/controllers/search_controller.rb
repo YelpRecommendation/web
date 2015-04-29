@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   def home
+      print 'home'
   end
   
   def testloc

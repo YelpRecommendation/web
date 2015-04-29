@@ -39,6 +39,7 @@ class SessionsController < ApplicationController
             redirect_to '/search'
         end
     end
+    
 	
 	def testdb
 		require 'moneta'
