@@ -28,40 +28,11 @@ class WaitController < ApplicationController
 
 		conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
 		
-		sql = "with usercount as ( select user_id,count(*) as num
-		from categories,review 
-		where review.business_id=categories.business_id
-		and "+"("+content+") "+"
-		group by user_id
-		order by num desc),
-		bestuser as( select *
-		from usercount
-		where rownum <= 10)
-		select business_id
-		from review,bestuser
-		where review.user_id=bestuser.user_id
-		and rownum <= 10
-		order by stars desc"
-
-		require 'moneta'
-		
-		# Create a simple file store
-		store = Moneta.new(:File, dir: 'moneta')
-		
-
-		ids=[]
-
-		conn.exec(sql).fetch do |row|
-			ids<<row[0]
+		for i in 0..len-1
+		sql = "insert into new_user_cate values('"+name+"',"+"'"+cate[i]+"')"
 		end
 
-		store[name]=ids
-		
-
-
-
-		store.close
-
+		conn.exec(sql)
 
 		# require "net/http"
 		# require "uri"
