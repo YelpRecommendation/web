@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'my_account/home'
+
   get 'review/home'
 
   get 'sessions/new'
