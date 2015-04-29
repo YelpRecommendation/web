@@ -46,9 +46,10 @@
 <%
 require 'moneta'
 store=Moneta.new(:File, dir: 'moneta')
+key=name+method
 business_ids=[]
-if store.key?(name)
-	business_ids=store[name]
+if store.key?(key)
+	business_ids=store[key]
 end
 
 conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
@@ -90,7 +91,7 @@ sql = "select business.name,business.full_address,business.city,state,stars from
 <%end%>
 </div>
 </li>
-<% end%>
+<%end%>
 <%end%>
 </ul>
 <%conn.logoff%>
