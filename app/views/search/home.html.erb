@@ -15,9 +15,25 @@
 <div>
 <% name = cookies[:username]%>
 <%=name%>
-<% conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')%>
-<% sql = "select business.name,business.full_address,business.city,state,stars,open from new_user,business where new_user.username=\'"+name+"\' and new_user.business_id=business.business_id"%>
 <ul class="list-group">
+<%
+require 'moneta'
+store=Moneta.new(:File, dir: 'moneta')
+business_ids=[]
+if store.key?(name)
+	business_ids=store[name]
+end
+
+conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
+
+len = business_ids.length
+
+
+for i in 0..len-1
+
+sql = "select business.name,business.full_address,business.city,state,stars from business where business_id=\'"+business_ids[i]+"\'"
+%>
+
 <% conn.exec(sql).fetch do |row|%>
 <li class="list-group-item">
 	Name:
@@ -35,9 +51,6 @@
 	Stars:
 <%= row[4] %>
 <br>
-	Open:
-<%= row[5] %>
-<br>
 <%BingSearch.account_key='OQjobovJhpYgpIjDnC30TH/FOzw5Itq8eYTySpbfZGw'%>
 <%result = BingSearch.image(row[0]).first %>
 <%if result!=nil%>
@@ -45,6 +58,7 @@
 <%end%>
 </li>
 <% end%>
+<%end%>
 </ul>
 <%conn.logoff%>
 </div>
