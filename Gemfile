@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'moneta'
-gem 'geocoder’
+gem 'geocoder'
 gem 'capistrano'
 gem 'capistrano-ext'
 
