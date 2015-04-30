@@ -33,7 +33,6 @@ class WaitController < ApplicationController
 		end
 		conn.commit
 		conn.logoff
-
 		
 		redirect_to "/search"
 	end
