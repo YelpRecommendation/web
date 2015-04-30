@@ -48,8 +48,8 @@ with usercount as (
 									   from  idssort
 									   inner join business on business_id=idssort.id
 "
-la=params[:la]
-lo=params[:lo]
+la=cookies[:la]
+lo=cookies[:lo]
 if la==nil
     la="39"
     end
