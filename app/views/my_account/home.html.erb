@@ -1,2 +1,45 @@
 <h1>MyAccount#home</h1>
 <p>Find me in app/views/my_account/home.html.erb</p>
+<div class="row">
+	<div class="col-md-2">
+		<div class="btn-group-vertical" role="group" aria-label="">
+			<button type="button" class="btn btn-primary">Update Your Favorite Tag</button>
+			<button type="button" class="btn btn-primary">Add A Friend</button>
+		</div>
+	</div>
+	<div class="col-md-10">
+		<p>Your friends' review</p>
+		<ul class="list-group">
+			<%sql = "select business.name,yelp_user.name,stars,text,dates,votes_funny,votes_userfull,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"'"
+			conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
+			conn.exec(sql).fetch do |row|%>
+				<li class="list-group-item">
+				Business Name:
+				<%= row[0]%>
+				<br>
+				Friend's Name:
+				<%= row[1]%>
+				<br>
+				Stars:
+				<%= row[2]%>
+				<br>
+				Dates:
+				<%= row[4]%>
+				<br>
+				Votes Funny:
+				<%= row[5]%>
+				
+				Votes Userfull:
+				<%= row[6]%>
+				
+				Votes Cool:
+				<%= row[7]%>
+				
+				<br>
+				Text:
+				<%= row[3]%>
+				<br>
+			<%end%>
+		</ul>
+	</div>
+</div>
