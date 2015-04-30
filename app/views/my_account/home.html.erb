@@ -35,6 +35,9 @@
 			<%
 			print 7
 			review = params[:review]
+			if review==nil
+				review="default"
+			end
 			sql = "select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10"
 			print 8
 			if review=="stars"
@@ -49,7 +52,7 @@
       		if review=="useful"
 				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by votes_useful"         
       		end
-			conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
+			#conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
 			print 9
 
 
@@ -87,7 +90,7 @@ print "start to fetch\n\n"
 							  conn.exec(sql).fetch do |row|
 									matrix<<row
 							  end
-							  
+							  conn.logoff
 							  store[key]=matrix
 print "finished to fetch\n\n"
 						  end
