@@ -16,23 +16,18 @@
 			<input type="submit" value="Search" class="btn btn-primary">
 		</div>
 	</form>
-	<div class="col-sm-2">
-		<div class="dropdown">
-			<button class="btn btn-primary dropdown-toggle" type="button" id="menu" data-toggle="dropdown">Sort by
-				<span class="caret"></span></button>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-					<li role="presentation">	
-						<a role="menuitem" tabindex="-1" href="search?method=location">Sort by Location</a>
-					</li>
-					<li role="presentation">						
-						<a role="menuitem" tabindex="-1" href="search?method=user">Sort by User Recommendation</a>
-					</li>
-					<li role="presentation">						
-						<a role="menuitem" tabindex="-1" href="search?method=rating">Sort by Business Rating</a>
-					</li>
-				</ul>
-		</div>
+	<div>
+		
+			<a href="search?method=location" role="button" class="btn btn-primary">Sort by Location</a>
+		
+		
+			<a href="search?method=user" role="button" class="btn btn-primary">Sort by User Recommendation</a>
+
+		
+			<a href="search?method=rating" role="button" class="btn btn-primary">Sort by Business Rating</a>
+		
 	</div>
+	
 </div>
 <div>
 <br><br>
@@ -56,7 +51,7 @@ end
 print method+"\n==================="
 
 
-key=name+"user";
+key=name+method;
 						  					  
 print "take 2the fetch from local\n\n"
 matrix=store[key]

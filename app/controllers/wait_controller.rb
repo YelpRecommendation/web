@@ -53,7 +53,7 @@ class WaitController < ApplicationController
 		print 5
 		response = http.request(request)
 		print response
-		
+
 		
 		
 		redirect_to "/search"

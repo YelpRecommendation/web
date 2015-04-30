@@ -1,18 +1,35 @@
-<h1>MyAccount#home</h1>
-<p>Find me in app/views/my_account/home.html.erb</p>
+<p>Manage My Account</p>
+<br>
+
 <div class="row">
 	<div class="col-md-2">
+		<h2>Menu</h2>
 		<div class="btn-group-vertical" role="group" aria-label="">
-			<button type="button" class="btn btn-primary">Update Your Favorite Tag</button>
-			<button type="button" class="btn btn-primary">Add A Friend</button>
+			<form role="form" action='search'>
+					<input type="submit" class="btn btn-primary" value="See the Recommendation"</input>
+			</form>
+			<br>
+			<form role="form" action='recom'>
+				<input type="submit" class="btn btn-primary" value="Update Your Favorite Tag"</input>
+			</form>
+			<br>
+			<form role="form" action='addfriend'>
+					<input type="submit" class="btn btn-primary" value="Add A Friend"</input>
+			</form>
+			<br>
 		</div>
 	</div>
 	<div class="col-md-10">
-		<p>Your friends' review</p>
+		<h2>Your friends' review</h2>
 		<ul class="list-group">
-			<%sql = "select business.name,yelp_user.name,stars,text,dates,votes_funny,votes_userfull,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"'"
+			<%
+			print 7
+			sql = "select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10"
+			print 8
 			conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
-			conn.exec(sql).fetch do |row|%>
+			print 9
+			conn.exec(sql).fetch do |row|
+				%>
 				<li class="list-group-item">
 				Business Name:
 				<%= row[0]%>
@@ -36,10 +53,12 @@
 				<%= row[7]%>
 				
 				<br>
-				Text:
+				Review:<br>
 				<%= row[3]%>
 				<br>
-			<%end%>
+			</li>
+			<%end
+			print 10%>
 		</ul>
 	</div>
 </div>

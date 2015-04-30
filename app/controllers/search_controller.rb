@@ -1,6 +1,9 @@
 class SearchController < ApplicationController
   def home
-	  
+	  method = params[:method]
+      if method==nil
+          method="user"
+      end
 	  sqlrating="
 	  with rating as(select business.name, business.full_address,city,state,stars,review_count
 					 from business,categories,new_user_category
@@ -43,7 +46,13 @@ with usercount as (
 "
 						  
 						  
-						  
+					 if method=="rating"
+                         sql=sqlrating
+                         else
+                         sql=sqluser
+                         end
+                     print sql
+                     
 						  require 'moneta'
 						  
 						  # Create a simple file store
@@ -58,7 +67,7 @@ with usercount as (
 						  
 						  #		store[key]=ids
 						  
-						  key=cookies[:username]+"user";
+						  key=cookies[:username]+method;
 						  
 						  
 print "checking local\n\n"
@@ -70,8 +79,9 @@ print "start to fetch\n\n"
 							  matrix=[]
 							  
 							  conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
-							  
-							  conn.exec(sqluser).fetch do |row|
+							 
+                                  
+							  conn.exec(sql).fetch do |row|
 								  print "\nName:"+row[0]
 									matrix<<row
 							  end
