@@ -62,7 +62,8 @@ matrix=store[key]
 		<div class="row">
 			<div class="col-sm-6">
 				Name:
-				<%= row[0] %>
+				<%add='testmap?address='+row[1].gsub(" ","_")%>
+				<%= link_to row[0], add %>
 				<br>
 				Address:
 				<%= row[1] %>

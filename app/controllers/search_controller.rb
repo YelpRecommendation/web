@@ -102,15 +102,15 @@ print "take the fetch from local\n\n"
 #	  render text: loc
   end
   
-  def generate_url(url, params = {})
+  def generate_url(url, aparams = {})
 	  uri = URI(url)
-	  uri.query = params.to_query
+	  uri.query = aparams.to_query
 	  uri.to_s
   end
   
   def testmap
-	  params[:toaddr]="Walmart supermarket"
-	  redirect_to generate_url("http://localhost:3001/testdir", :from => "foo", :toaddr => params[:toaddr].gsub(" ","_"))
+	  #params[:address]="Walmart supermarket center"
+	  redirect_to generate_url("http://localhost:3001/testdir", :toaddr => params[:address].gsub("_"," "))
   end
   
 end
