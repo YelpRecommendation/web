@@ -7,18 +7,32 @@ class SessionsController < ApplicationController
 	
 	def create
 		email=params[:session][:email]
-		passwd=params[:session][:password]
 		
 		cookies[:username]=email
-		cookies[:passwd]=passwd
-		
-		
-		redirect_to '/search'
+        conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
+        
+        sql = "select * from new_user_category where new_user_category.user_name=\'"+email+"\'"
+        cursor1 = conn.parse(sql)
+        cursor1.exec
+        sql2 = "select * from new_user where username=\'"+email+"\'"
+        cursor2 = conn.parse(sql2)
+        cursor2.exec
+        if cursor1.fetch==nil and cursor2.fetch==nil
+            cursor1.close
+            cursor2.close
+            conn.logoff
+            redirect_to '/signup'
+        else
+            cursor1.close
+            cursor2.close
+            conn.logoff
+            redirect_to '/search'
+        end
+ 
 	end
 	
 	def destroy
 		cookies.delete(:username)
-		cookies.delete(:passwd)
         
 		redirect_to '/home'
 	end
