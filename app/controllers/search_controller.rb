@@ -145,7 +145,7 @@ print "take the fetch from local\n\n"
   
   def testmap
 	  #params[:address]="Walmart supermarket center"
-	  redirect_to generate_url("http://localhost:3001/testdir", :toaddr => params[:address].gsub("_"," "))
+	  redirect_to generate_url("http://52.6.219.16:3001/testdir", :toaddr => params[:address].gsub("_"," "))
   end
   
   def testgeo
