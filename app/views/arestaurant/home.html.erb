@@ -7,8 +7,13 @@
 <ul class="list-group">
 <% conn.exec(sql).fetch do |row|%>
 <li class="list-group-item">
+	<div class="row">
+			<div class="col-sm-6">
 	Name:
-<%= row[2] %>
+	<%add='testmap?address='+row[3].gsub(" ","_")%>
+
+				<%= link_to row[2], add %>
+
 <br>
 	Address:
 <%= row[3] %>
@@ -22,16 +27,18 @@
 	Stars:
 <%= row[8] %>
 <br>
-	Open:
-<%= row[10] %>
-<br>
+</div>
+<div class="col-sm-6">
 <%BingSearch.account_key='OQjobovJhpYgpIjDnC30TH/FOzw5Itq8eYTySpbfZGw'%>
 <%result = BingSearch.image(row[2]).first %>
 <%if result!=nil%>
 <%= image_tag(result.media_url,:alt=>"Image",:title=>row[2],:height=>"100",:width=>"100")%>
 <%end%>
+</div>
+</div>
 </li>
 <% end%>
 </ul>
 <%conn.logoff%>
+
 </p>
