@@ -41,7 +41,7 @@
 			sql = "select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10"
 			print 8
 			if review=="stars"
-				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by stars desc desc"         
+				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by stars desc"         
       		end
       		if review=="funny"
 				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by votes_funny desc"         
