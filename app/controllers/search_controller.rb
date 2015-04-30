@@ -120,13 +120,13 @@ print "start to fetch\n\n"
 								  print "\nName:"+row[0]
 									matrix<<row
 							  end
-							  
+							  conn.logoff
 							  store[key]=matrix
 print "finished to fetch\n\n"
 						  end
 						  
 print "take the fetch from local\n\n"
-						  matrix=store[key]
+#matrix=store[key]
 						  
 						  store.close
 	  

@@ -46,12 +46,73 @@
       		if review=="cool"
 				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by votes_cool"         
       		end
-      		if review=="cool"
+      		if review=="useful"
 				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by votes_useful"         
       		end
 			conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
 			print 9
-			conn.exec(sql).fetch do |row|
+
+
+
+
+
+						require 'moneta'
+						  
+						  # Create a simple file store
+						  store = Moneta.new(:File, dir: 'moneta')
+						  
+						  
+						  #		ids=[]
+						  #
+						  #		conn.exec(sql).fetch do |row|
+						  #			ids<<row[0]
+						  #		end
+						  
+						  #		store[key]=ids
+						  
+						  key=cookies[:username]+"account"+review;
+						  
+						  
+print "checking local\n\n"
+						  if store.key?(key)
+							  else
+print "start to fetch\n\n"
+							  
+							  
+							  matrix=[]
+							  
+							  conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
+							 
+                                  
+							  conn.exec(sql).fetch do |row|
+									matrix<<row
+							  end
+							  
+							  store[key]=matrix
+print "finished to fetch\n\n"
+						  end
+						  
+print "take the fetch from local\n\n"
+						  matrix=store[key]
+						  
+						  store.close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			for row in matrix
 				%>
 				<li class="list-group-item">
 				Business Name:
