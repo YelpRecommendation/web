@@ -46,7 +46,7 @@ print name+"\n"
 
 if method==nil
 	#default
-	method="user"
+	method="rating"
 end
 
 print method+"\n==================="
@@ -63,7 +63,8 @@ matrix=store[key]
 		<div class="row">
 			<div class="col-sm-6">
 				Name:
-				<%add='testmap?address='+row[1]%>
+				<%add='testmap?address='+row[1].gsub(" ","_")%>
+
 				<%= link_to row[0], add %>
 				<br>
 				Address:
