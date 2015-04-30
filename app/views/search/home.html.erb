@@ -46,54 +46,51 @@
 <%
 require 'moneta'
 store=Moneta.new(:File, dir: 'moneta')
-key=name+method
-business_ids=[]
-if store.key?(key)
-	business_ids=store[key]
+print name+"\n"
+
+if method==nil
+	#default
+	method="user"
 end
 
-conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
-
-len = business_ids.length
+print method+"\n==================="
 
 
-for i in 0..len-1
+key=name+"user";
+						  					  
+print "take 2the fetch from local\n\n"
+matrix=store[key]
 
-sql = "select business.name,business.full_address,business.city,state,stars from business where business_id=\'"+business_ids[i]+"\'"
-%>
+	 for row in matrix%>
 
-<% conn.exec(sql).fetch do |row|%>
-
-<li class="list-group-item">
-<div class="row">
-<div class="col-sm-6">
-	Name:
-<%= row[0] %>
-<br>
-	Address:
-<%= row[1] %>
-<br>
-	City:
-<%= row[2] %>
-<br>
-	State:
-<%= row[3] %>
-<br>
-	Stars:
-<%= row[4] %>
-<br>
-</div>
-<div class="col-sm-6">
-<%BingSearch.account_key='OQjobovJhpYgpIjDnC30TH/FOzw5Itq8eYTySpbfZGw'%>
-<%result = BingSearch.image(row[0]).first %>
-<%if result!=nil%>
-<%= image_tag(result.media_url,:alt=>"Image",:title=>row[2],:height=>"100",:width=>"100")%>
-<%end%>
-</div>
-</li>
-<%end%>
-<%end%>
+	<li class="list-group-item">
+		<div class="row">
+			<div class="col-sm-6">
+				Name:
+				<%= row[0] %>
+				<br>
+				Address:
+				<%= row[1] %>
+				<br>
+				City:
+				<%= row[2] %>
+				<br>
+				State:
+				<%= row[3] %>
+				<br>
+				Stars:
+				<%= row[4] %>
+				<br>
+			</div>
+			<div class="col-sm-6">
+				<%BingSearch.account_key='OQjobovJhpYgpIjDnC30TH/FOzw5Itq8eYTySpbfZGw'%>
+				<%result = BingSearch.image(row[0]).first %>
+				<%if result!=nil%>
+					<%= image_tag(result.media_url,:alt=>"Image",:title=>row[2],:height=>"100",:width=>"100")%>
+				<%end%>
+			</div>
+		</div>	
+	</li>
+	<%end%>
 </ul>
-<%conn.logoff%>
-</div>
 </div>
