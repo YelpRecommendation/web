@@ -91,4 +91,16 @@ print "take the fetch from local\n\n"
 #	  loc=request.location.latitude
 #	  render text: loc
   end
+  
+  def generate_url(url, params = {})
+	  uri = URI(url)
+	  uri.query = params.to_query
+	  uri.to_s
+  end
+  
+  def testmap
+	  params[:toaddr]="Walmart supermarket"
+	  redirect_to generate_url("http://localhost:3001/testdir", :from => "foo", :toaddr => params[:toaddr].gsub(" ","_"))
+  end
+  
 end

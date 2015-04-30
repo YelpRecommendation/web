@@ -1,10 +1,5 @@
 <head>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-  <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
-  </style>
+
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?&sensor=true">
   </script>
@@ -26,20 +21,15 @@
           var latitude  = position.coords.latitude;
           var longitude = position.coords.longitude;
           alert('latitude:' + latitude + 'longitude:' + longitude )
+document.getElementById("latitude").innerHTML = latitude.toString();
+
+
+
+
 
        //   This function is supposed to return the current latitude and longitude of user
        //   example: 48.1673341, 17.0830998
-          var mapOptions = {
 
-
-         //    How to pass the result from function showPosition to LatLng ?
-         //    see the line below:                
-         center: new google.maps.LatLng(48.1673341,17.0830998),
-              zoom: 13,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
-          var map = new google.maps.Map(document.getElementById("map-canvas"),
-                  mapOptions);
       }
 
 
@@ -63,15 +53,29 @@
 
   $(document).ready(function(){     //  events before the windows loads
     getLocation();
-    initialize();
+
+
+
+  $("#new_building_link").click(function() {
+    $.ajax({
+      type:     "POST",  # or whatever http method you need
+      url:      "/buildings/add_building",
+      dataType: "script"
+    });
+    return false;
+  });
+
   });
 
 
   </script>
+
 </head>
 
 
-<h3>Hello from Google maps </h3>
+<h3 id="latitude">Hello from Google maps </h3>
 
+
+<%=link_to "New Building", "/", :id => 'new_building_link' %>
 
 <div id="map-canvas"/>
