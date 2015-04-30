@@ -1,0 +1,77 @@
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+  </style>
+  <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?&sensor=true">
+  </script>
+
+  <script type="text/javascript">
+
+      function getLocation(){
+          {
+              if (navigator.geolocation)
+              {
+                  navigator.geolocation.getCurrentPosition(showPosition);
+              }
+              else{x.innerHTML="Geolocation is not supported by this browser.";}
+          }
+
+      }
+
+      function showPosition(position) {
+          var latitude  = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          alert('latitude:' + latitude + 'longitude:' + longitude )
+
+       //   This function is supposed to return the current latitude and longitude of user
+       //   example: 48.1673341, 17.0830998
+          var mapOptions = {
+
+
+         //    How to pass the result from function showPosition to LatLng ?
+         //    see the line below:                
+         center: new google.maps.LatLng(48.1673341,17.0830998),
+              zoom: 13,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(document.getElementById("map-canvas"),
+                  mapOptions);
+      }
+
+
+      function initialize() {
+
+          var mapOptions = {
+
+
+         //    How to pass the result from function showPosition to LatLng ?
+         //    see the line below:                
+         center: new google.maps.LatLng(48.1673341,17.0830998),
+              zoom: 13,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(document.getElementById("map-canvas"),
+                  mapOptions);
+
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+  $(document).ready(function(){     //  events before the windows loads
+    getLocation();
+    initialize();
+  });
+
+
+  </script>
+</head>
+
+
+<h3>Hello from Google maps </h3>
+
+
+<div id="map-canvas"/>
