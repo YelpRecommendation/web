@@ -34,25 +34,47 @@ class WaitController < ApplicationController
 		conn.commit
 		conn.logoff
 		
+		
+		
+		require "net/http"
+		require "uri"
+		uri = URI.parse("http://ec2-52-6-130-13.compute-1.amazonaws.com/Recommendation/rec")
+		#		 uri = URI.parse("http://165.123.210.122:8081/Recommendation/rec")
+		print 2
+		http = Net::HTTP.new(uri.host, uri.port)
+		print 3
+		request = Net::HTTP::Post.new(uri.request_uri)
+		print 4
+		tosendcat=cate[0]
+		for i in 1..len-1
+			tosendcat+="$"+cate[i]
+		end
+		request.set_form_data({"username" => name, "content" => tosendcat})
+		print 5
+		response = http.request(request)
+		print response
+		
+		
+		
 		redirect_to "/search"
 	end
 	
 	def java
-		 require "net/http"
-		 require "uri"
-		 print 1
+#		 require "net/http"
+#		 require "uri"
+#		 print 1
 #		 uri = URI.parse("http://ec2-52-6-130-13.compute-1.amazonaws.com/Recommendation/rec")
-		 uri = URI.parse("http://165.123.210.122:8081/Recommendation/rec")
-		print 2
-		 http = Net::HTTP.new(uri.host, uri.port)
-		print 3
-		 request = Net::HTTP::Post.new(uri.request_uri)
-		print 4
-		 request.set_form_data({"username" => "testjava", "content" => "Seafood$Diners"})
-		print 5
-		 response = http.request(request)
-		print 6
-		print response
-		 render text: response
+##		 uri = URI.parse("http://165.123.210.122:8081/Recommendation/rec")
+#		print 2
+#		 http = Net::HTTP.new(uri.host, uri.port)
+#		print 3
+#		 request = Net::HTTP::Post.new(uri.request_uri)
+#		print 4
+#		 request.set_form_data({"username" => "testjava2", "content" => "Seafood$Diners"})
+#		print 5
+#		 response = http.request(request)
+#		print 6
+#		print response
+#		render text: response
 	end
 end

@@ -88,7 +88,7 @@ print "take the fetch from local\n\n"
   end
   
   def testloc
-	  loc=request.location.latitude
-	  render text: loc
+#	  loc=request.location.latitude
+#	  render text: loc
   end
 end
