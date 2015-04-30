@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'addfriend/home'
+
   get 'my_account/home'
 
   get 'review/home'
@@ -34,7 +36,8 @@ Rails.application.routes.draw do
   get 'facebook' => 'sessions#facebook'
   get 'recom' => 'recom#home'
   get 'wait' => 'wait#home'
-
+  get 'my_account' => 'my_account#home'
+  get 'addfriend' => 'addfriend#home'
 
   get 'search' => 'search#home'
   get 'arestaurant' => 'arestaurant#home'
