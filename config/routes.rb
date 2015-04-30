@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get 'testloc' => 'search#testloc'
   get 'testdb' => 'sessions#testdb'
   get 'testjava' => 'wait#java'
+  get 'testgeo' => 'search#testgeo'
   
 
 

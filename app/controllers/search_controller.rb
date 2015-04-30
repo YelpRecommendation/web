@@ -113,4 +113,9 @@ print "take the fetch from local\n\n"
 	  redirect_to generate_url("http://localhost:3001/testdir", :toaddr => params[:address].gsub("_"," "))
   end
   
+  def testgeo
+	  res=location.request
+	  
+	  render text: res.latitude
+  end
 end

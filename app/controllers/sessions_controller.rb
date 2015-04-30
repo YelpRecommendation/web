@@ -73,4 +73,6 @@ class SessionsController < ApplicationController
 		render text: testtxt
 	end
 	
+	
+	
 end

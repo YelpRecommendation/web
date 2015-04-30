@@ -20,11 +20,29 @@
       function showPosition(position) {
           var latitude  = position.coords.latitude;
           var longitude = position.coords.longitude;
-          alert('latitude:' + latitude + 'longitude:' + longitude )
-document.getElementById("latitude").innerHTML = latitude.toString();
+
+          //alert('latitude:' + latitude + 'longitude:' + longitude )
+//document.getElementById("latitude").innerHTML = latitude.toString();
 
 
+function sendParams(q){
+  $.ajax({
+    url: 'testloc',
+    type: 'GET',
+    data:     {'la':'38', 'lo':'-97'}
+  });
+}
+sendParams("test");
 
+<%
+require 'active_support'
+print "\n\n\n\n\n=========123============="
+#laa=ActiveSupport::JSON.decode(CGI.unescapeHTML(params[:la]))
+print params[:la]
+print "===321"
+cookies[:la]=params[:la]
+cookies[:lo]=params[:lo]
+%>
 
 
        //   This function is supposed to return the current latitude and longitude of user
@@ -54,17 +72,6 @@ document.getElementById("latitude").innerHTML = latitude.toString();
   $(document).ready(function(){     //  events before the windows loads
     getLocation();
 
-
-
-  $("#new_building_link").click(function() {
-    $.ajax({
-      type:     "POST",  # or whatever http method you need
-      url:      "/buildings/add_building",
-      dataType: "script"
-    });
-    return false;
-  });
-
   });
 
 
@@ -73,9 +80,11 @@ document.getElementById("latitude").innerHTML = latitude.toString();
 </head>
 
 
-<h3 id="latitude">Hello from Google maps </h3>
+<h3 id="latitude">Hello, <%=cookies[:username]%> </h3>
 
 
-<%=link_to "New Building", "/", :id => 'new_building_link' %>
+<%=link_to "Enter site!", "/", :id => 'new_building_link' %>
+
+
 
 <div id="map-canvas"/>

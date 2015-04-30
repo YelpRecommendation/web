@@ -3,9 +3,13 @@
     The Yelp Recommendation App</a>
     by Yang Cao, Yuexi Ma, Muruo Liu, and Yuanjie Chen</a>
 
-						<% if cookies[:username]!=nil%>
-							<%= "  Logged in as "+cookies[:username]%>
-						<% end %>
+            <% if cookies[:username]!=nil%>
+              <%= "           Logged in as "+cookies[:username]%>
+            <% end %>
+
+            <% if cookies[:la]!=nil%>
+              <%= "  at "+cookies[:la]+", "+cookies[:lo]%>
+            <% end %>
   </small>
   <nav>
     <ul>
