@@ -21,11 +21,34 @@
 	</div>
 	<div class="col-md-10">
 		<h2>Your friends' review</h2>
+		
+			<a href="my_account?review=stars" role="button" class="btn btn-primary">Sort by Stars</a>
+		
+		
+			<a href="my_account?review=funny" role="button" class="btn btn-primary">Sort by Votes Funny</a>
+
+			<a href="my_account?review=useful" role="button" class="btn btn-primary">Sort by Votes Useful</a>
+
+			<a href="my_account?review=cool" role="button" class="btn btn-primary">Sort by Votes Cool</a>
+		
 		<ul class="list-group">
 			<%
 			print 7
+			review = params[:review]
 			sql = "select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10"
 			print 8
+			if review=="stars"
+				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by stars desc"         
+      		end
+      		if review=="funny"
+				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by votes_funny"         
+      		end
+      		if review=="cool"
+				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by votes_cool"         
+      		end
+      		if review=="cool"
+				sql="select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' and rownum<=10 order by votes_useful"         
+      		end
 			conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
 			print 9
 			conn.exec(sql).fetch do |row|
@@ -46,7 +69,7 @@
 				Votes Funny:
 				<%= row[5]%>
 				
-				Votes Userfull:
+				Votes Useful:
 				<%= row[6]%>
 				
 				Votes Cool:

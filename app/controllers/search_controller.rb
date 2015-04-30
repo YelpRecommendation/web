@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   def home
 	  method = params[:method]
       if method==nil
-          method="user"
+          method="rating"
       end
 	  sqlrating="
 	  with rating as(select business.name, business.full_address,city,state,stars,review_count
@@ -38,19 +38,54 @@ with usercount as (
 									   and categories.category in
 									   (select category from new_user_category
 										where new_user_category.user_name='"+cookies[:username]+"')
-									   and rownum <= 10
-									   order by stars desc)
+									   
+									   order by stars desc),
+                                       idssort as(
+                                                  select id
+                                                  from ids
+                                                  where rownum<=10)
 									   select distinct(business.name), business.full_address, business.city, business.state, business.stars
-									   from business
-									   inner join ids on business_id=ids.id
+									   from  idssort
+									   inner join business on business_id=idssort.id
 "
-						  
-						  
+la=params[:la]
+lo=params[:lo]
+if la==nil
+    la="39"
+    end
+if lo==nil
+    lo="-78"
+    end
+sqllocation="with pre as(select b.name, full_address, city, state,stars,POWER(("+la+"-latitude),2)+POWER(("+lo+"-longitude),2) AS dist
+from business b,new_user_category nu,categories
+where categories.business_id=b.business_id and
+nu.category=categories.category
+and nu.user_name='"+cookies[:username]+"'
+order by dist asc)
+select *
+from pre
+where rownum<=10"
+
+sqlsimiuser="select b.name, full_address, city, state,stars
+from business b,new_user
+where new_user.username='"+cookies[:username]+"'
+and new_user.business_id=b.business_id
+and rownum<=10"
+
+    sql=sqluser
 					 if method=="rating"
                          sql=sqlrating
                          else
-                         sql=sqluser
-                         end
+                            if method=="location"
+                                sql=sqllocation
+                            else
+                                if method=="simiuser"
+                                    sql=sqlsimiuser
+                                else
+                                    sql=sqluser
+                                end
+                            end
+                    end
                      print sql
                      
 						  require 'moneta'
