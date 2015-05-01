@@ -38,19 +38,19 @@
 			if review==nil
 				review="default"
 			end
-			sql = "with res as (select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' ) select * from res where rownum<=10"
+			sql = "with res as (select business.name as bn,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' ) select * from res where rownum<=10"
 			print 8
 			if review=="stars"
-				sql="with res as (select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' order by stars desc) select * from res where rownum<=10"         
+				sql="with res as (select business.name as bn,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' order by review.stars desc) select * from res where rownum<=10"         
       		end
       		if review=="funny"
-				sql="with res as (select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' order by votes_funny desc) select * from res where rownum<=10"         
+				sql="with res as (select business.name as bn,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' order by votes_funny desc) select * from res where rownum<=10"         
       		end
       		if review=="cool"
-				sql="with res as (select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' order by votes_cool desc ) select * from res where rownum<=10"         
+				sql="with res as (select business.name as bn,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' order by votes_cool desc ) select * from res where rownum<=10"         
       		end
       		if review=="useful"
-				sql="with res as (select business.name,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' order by votes_useful desc ) select * from res where rownum<=10"         
+				sql="with res as (select business.name as bn,yelp_user.name,business.stars,text,dates,votes_funny,votes_useful,votes_cool from friends,review,yelp_user,business where business.business_id=review.business_id and review.user_id=yelp_user.user_id and friends.username2=yelp_user.name and friends.username1='"+cookies[:username]+"' order by votes_useful desc ) select * from res where rownum<=10"         
       		end
 			#conn = OCI8.new('jackchen','cis5502015','jackdb.cipsboubatuq.us-east-1.rds.amazonaws.com:1521/TESTRDS')
 			print 9
